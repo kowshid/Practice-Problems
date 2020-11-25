@@ -27,7 +27,8 @@ int main()
         }
     }
 
-    else printf("T out of bound\n");
+    else
+        printf("T out of bound\n");
 
     return 0;
 }
