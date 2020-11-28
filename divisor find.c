@@ -22,25 +22,27 @@ int main()
     int T, n, limit;
     fscanf(fptr, "%d", &T);
 
-    for(int i = 0; i < T; i++)
+    if(T > 0 && T <= 100)
     {
-        fscanf(fptr, "%d", &n);
-        limit = sqrt(n) + 1; //searching till sqrt of any number as divisors come in pairs
-        //printf("%d ", limit);
-        printf("Case %d:", i + 1);
-        for(int j = 1; j <= limit; j++)
+        for(int i = 0; i < T; i++)
         {
-            if(n % j == 0)
+            fscanf(fptr, "%d", &n);
+            limit = sqrt(n); //searching till sqrt of any number as divisors come in pairs
+            //printf("%d ", limit);
+            printf("Case %d:", i + 1);
+            for(int j = 1; j <= limit; j++)
             {
-                if(n/j != j) //not a perfect square
-                    printf(" %d %d", j, n/j);
-                else
-                    printf(" %d", j);
+                if(n % j == 0)
+                {
+                    if(n/j != j) //not a perfect square
+                        printf(" %d %d", j, n/j);
+                    else
+                        printf(" %d", j);
+                }
             }
+            //printed list is unsorted
+            printf("\n");
         }
-        //printed list is unsorted
-        printf("\n");
     }
-
     return 0;
 }
