@@ -42,8 +42,11 @@ int main()
 
     for(int i = 2; i <= limit; i++)
     {
-        for(int j = 2; i*j <= up; j++)
-            arr[i*j] = 0;
+        if(arr[i] == 1)
+        {
+            for(int j = 2; i*j <= up; j++)
+                arr[i*j] = 0;
+        }
     }
 
     for (int k = 0; k < T; k++)
