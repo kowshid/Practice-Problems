@@ -2,7 +2,7 @@ import math
 def sieve(n):
     prime = [True] * n
 
-    for i in range(2, math.ceil(math.sqrt(n))):
+    for i in range(2, int(math.sqrt(n))+1):
         j = 2
         if prime[i]:
             while(i*j < n):

@@ -5,15 +5,15 @@ def zigzag(arr):
     for i in range(n-1):
         if flag:
             if arr[i] > arr[i+1]:
-                temp = arr[i]
-                arr[i] = arr[i+1]
-                arr[i+1] = temp
+                arr[i] = arr[i] ^ arr[i + 1]
+                arr[i + 1] = arr[i] ^ arr[i + 1]
+                arr[i] = arr[i] ^ arr[i + 1]
 
         else:
             if arr[i] < arr[i+1]:
-                temp = arr[i]
-                arr[i] = arr[i+1]
-                arr[i+1] = temp
+                arr[i] = arr[i] + arr[i + 1]
+                arr[i + 1] = arr[i] - arr[i + 1]
+                arr[i] = arr[i] - arr[i + 1]
         flag = not flag
 
     return arr
