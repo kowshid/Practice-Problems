@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 success = 1
 fail = 0
 
@@ -152,6 +154,41 @@ class LinkedList:
         prev.next = None
         return success
 
+    def removeDuplicateUnsorted(self):
+        if self.isEmpty():
+            print("List is empty, nothing to remove")
+            return
+
+        keys = set()
+        prev = self.head
+        temp = prev.next
+        keys.add(prev.val)
+
+        while temp:
+            if temp.val not in keys:
+                keys.add(temp.val)
+                prev.next = temp
+                prev = temp
+
+            temp = temp.next
+
+        prev.next = None
+
+    def removeDuplicateSorted(self):
+        if self.isEmpty():
+            return
+
+        prev = self.head
+        temp = prev.next
+
+        while temp:
+            if prev.val != temp.val:
+                prev.next = temp
+                prev = temp
+            temp = temp.next
+
+        prev.next = None
+
 def printList(head):
     if head is None:
         return fail
@@ -190,8 +227,16 @@ def main():
     ll.insertBefore(5, 6)
 
     printList(ll.head)
-    result = reverse(ll.head)
-    printList(result)
+    # result = reverse(ll.head)
+    # printList(result)
+    ll.insertLast(5)
+    ll.insertLast(5)
+    ll.insertFirst(0)
+    ll.insertBefore(1, 1)
+    printList(ll.head)
+    ll.removeDuplicateUnsorted()
+    printList(ll.head)
+
 
 if __name__ == "__main__":
     main()
