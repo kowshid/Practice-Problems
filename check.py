@@ -1,10 +1,10 @@
-from collections import defaultdict
+def countPairs():
+    p = 1
+    powers = [int] * 41
+    for i in range(41):
+        powers[i] = p
+        p *= 2
 
-test = defaultdict(lambda : False)
+    print(powers)
 
-for i in range(10):
-    test[i] = True
-
-for key in test:
-    if test[key]:
-        print(key)
+countPairs()

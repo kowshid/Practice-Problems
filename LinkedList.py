@@ -158,6 +158,8 @@ class LinkedList:
         if self.isEmpty():
             print("List is empty, nothing to remove")
             return
+        if self.head.next is None:
+            return
 
         keys = set()
         prev = self.head
@@ -174,20 +176,45 @@ class LinkedList:
 
         prev.next = None
 
+    # 0 = > 1 = > 1 = > 1 = > 2 = > 3 = > 4 = > 5 = > 5 = > 6
+
     def removeDuplicateSorted(self):
         if self.isEmpty():
+            return
+        if self.head.next is None:
             return
 
         prev = self.head
         temp = prev.next
 
         while temp:
-            if prev.val != temp.val:
-                prev.next = temp
+            if prev.val == temp.val:
+                prev.next = temp.next
+                temp.next = None
+            else:
                 prev = temp
             temp = temp.next
+            # if prev.val != temp.val:
+            #     prev = temp
+            # temp = temp.next
 
         prev.next = None
+
+    def reverse(self):
+        if self.isEmpty():
+            return None
+        if self.head.next is None:
+            return self.head
+
+        # 1 2 3 4 5
+        prev = None
+        while self.head:
+            temp = self.head.next
+            self.head.next = prev
+            prev = self.head
+            self.head = temp
+
+        self.head = prev
 
 def printList(head):
     if head is None:
@@ -207,10 +234,10 @@ def reverse(node):
     if node.next is None:
         return node
 
-    ret = reverse(node.next)
+    new_head = reverse(node.next)
     node.next.next = node
     node.next = None
-    return ret
+    return new_head
 
 def main():
     ll = LinkedList()
@@ -218,25 +245,24 @@ def main():
     ll.insertFirst(1)
     ll.insertLast(4)
     ll.insertBefore(3, 4)
-    ll.insertAfter(5, 4)
-
-    ll.delete(6)
-    ll.delete(3)
-    ll.deleteLast()
+    ll.insertAfter(6, 4)
     ll.insertBefore(0, 1)
     ll.insertBefore(5, 6)
+    # printList(ll.head)
+    # ll.reverse()
 
-    printList(ll.head)
-    # result = reverse(ll.head)
-    # printList(result)
-    ll.insertLast(5)
-    ll.insertLast(5)
-    ll.insertFirst(0)
+    ll.insertBefore(5, 5)
     ll.insertBefore(1, 1)
-    printList(ll.head)
-    ll.removeDuplicateUnsorted()
+    ll.insertBefore(1, 1)
+
     printList(ll.head)
 
+    ll2 = LinkedList()
+    ll2.head = reverse(ll.head)
+    printList(ll2.head)
+
+    ll2.reverse()
+    printList(ll2.head)
 
 if __name__ == "__main__":
     main()

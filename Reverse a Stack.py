@@ -82,8 +82,8 @@ def main():
     stack.display()
 
     rev = Stack(10)
-    reverseStack(stack)
-    stack.display()
+    reverse(stack, rev)
+    rev.display()
 
 if __name__ == '__main__':
     main()
